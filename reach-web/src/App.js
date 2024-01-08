@@ -6,6 +6,7 @@ import PrivateRoute from "./components/PrivateRoute";
 
 import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
+import SignupPage from "./pages/Signup";
 
 import Navbar from "./components/Navbar";
 
@@ -18,6 +19,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/login" element={<LoginPage />} />
+						<Route path="/signup" element={<SignupPage />} />
 						{/* <Route path="/account" element={<PrivateRoute />}>
 							<Route index element={<AccountPage />} />
 						</Route> */}
