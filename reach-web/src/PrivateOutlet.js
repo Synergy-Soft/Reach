@@ -6,12 +6,10 @@ import PageLayout from "./components/PageLayout";
 const PrivateOutlet = () => {
   const { currentUser } = useContext(AuthContext);
 
-  return currentUser ? (
+  return (
     <PageLayout>
       <Outlet />
     </PageLayout>
-  ) : (
-    <Navigate to="/login" />
   );
 };
 
