@@ -1,33 +1,27 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 import { AuthProvider } from "./contexts/AuthContext";
-import PrivateRoute from "./components/PrivateRoute";
-
 import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import SignupPage from "./pages/Signup";
-
-import Navbar from "./components/Navbar";
+import PrivateOutlet from "./PrivateOutlet";
 
 function App() {
-	return (
-		<>
-			<AuthProvider>
-				<Router>
-          <Navbar/>
-					<Routes>
-						<Route path="/" element={<HomePage />} />
-						<Route path="/login" element={<LoginPage />} />
-						<Route path="/signup" element={<SignupPage />} />
-						{/* <Route path="/account" element={<PrivateRoute />}>
-							<Route index element={<AccountPage />} />
-						</Route> */}
-					</Routes>
-				</Router>
-			</AuthProvider>
-		</>
-	);
+  return (
+    <>
+      <AuthProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<PrivateOutlet />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
+            </Route>
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </>
+  );
 }
 
 export default App;
