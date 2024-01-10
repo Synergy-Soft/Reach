@@ -1,11 +1,31 @@
-const Navbar = () => {
-    return (
-        <>
-            <a href="/">Home</a>
-            <a href="/login">Login</a>
-            <a href="/signup">Signup</a>
-        </>
-    )
-}
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
 
-export default Navbar;
+export default function Navbar() {
+  return (
+    <Box >
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <a href="/">Home</a>
+          <a href="/login">Login</a>
+          <a href="/signup">Signup</a>
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
+}
