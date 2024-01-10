@@ -14,13 +14,15 @@ import {
 import { getDatabase, ref, set, push, remove, get } from "firebase/database";
 
 const firebaseConfig = {
-	apiKey: "AIzaSyCw417C7upiZrUOCnHB71pQHlftk_BZiFA",
-	authDomain: "visual-lite.firebaseapp.com",
-	projectId: "visual-lite",
-	storageBucket: "visual-lite.appspot.com",
-	messagingSenderId: "740556318357",
-	appId: "1:740556318357:web:ad282a03cb6fff2e741d9c",
-};
+	apiKey: "AIzaSyAB_Uhcah2EusmXqCk0QrJqRfChZuk9HvU",
+	authDomain: "reach-d5ab4.firebaseapp.com",
+	databaseURL: "https://reach-d5ab4-default-rtdb.firebaseio.com",
+	projectId: "reach-d5ab4",
+	storageBucket: "reach-d5ab4.appspot.com",
+	messagingSenderId: "524109973538",
+	appId: "1:524109973538:web:f9400f115f9fb0d628e27b",
+	measurementId: "G-1Y220CSCRH"
+  };
 
 // Initialize Firebase
 initializeApp(firebaseConfig);
