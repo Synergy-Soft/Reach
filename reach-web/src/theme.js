@@ -2,14 +2,15 @@ import { createTheme } from "@mui/material/styles";
 
 // A custom theme for this app
 const theme = createTheme({
+  //Theme colors from Figma iteration 1 page
   palette: {
     mode: "dark",
     background: {
       default: "gray",
     },
     primary: {
-      main: "#0F974F",
-      light: "#81C784",
+      main: "#007BFF",
+      light: "#8bd18e80",
       outlinedBorder: "rgba(129, 199, 132, 0.50)",
     },
     text: {
@@ -17,27 +18,34 @@ const theme = createTheme({
       secondary: "rgba(224, 224, 224, 0.90)",
     },
     success: {
-      main: "#388E3C",
-      light: "#4CAF50",
+      main: "#198754",
+      light: "#20C997",
     },
     warning: {
-      main: "#EF6C00",
+      main: "#FFC107",
     },
     error: {
-      main: "##D32F2F",
-      light: "#EF5350",
+      main: "#DC3545",
     },
-    divider: "#FFFFFF80",
+    reach: {
+      primary: "#FD7E14",
+      light: "FFC5B8",
+    },
+    //Add parttime and bounty colors when needed.
+    divider: "#6C757D",
   },
+
+  //Typograpghy colors from text portion of Figma on iteration 1 and 2 pages
   typography: {
-    fontFamily: "poppins",
     h4: {
       fontWeight: 600,
       fontSize: 32,
+      fontFamily: "Inter",
     },
     h5: {
       fontWeight: 600,
       fontSize: 24,
+      fontFamily: "Poppins",
     },
     h6: {
       fontWeight: 600,
@@ -48,11 +56,13 @@ const theme = createTheme({
       fontSize: 16,
       letterSpacing: "0.15px",
       fontStyle: "normal",
+      fontFamily: "Poppins",
     },
     body2: {
       fontWeight: 500,
       fontSize: 16,
       fontStyle: "italic",
+      fontFamily: "Poppins",
     },
     caption: {
       fontWeight: 500,
