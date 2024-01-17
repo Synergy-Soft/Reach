@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Grid, Box, Typography, Button } from "@mui/material";
-
+import {theme} from "../theme";
 const Home = () => {
   // logic
 
@@ -10,7 +10,7 @@ const Home = () => {
       <Grid item xs={12}>
         <Box
           sx={{
-            backgroundColor: "primary.main",
+            backgroundColor: "theme.palette.primary.main",
           }}>
           <Typography variant="h4">Your Gateway to Amplified Brand Exposure</Typography>
           <Button
