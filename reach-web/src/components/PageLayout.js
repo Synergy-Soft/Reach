@@ -2,9 +2,9 @@ import { AppBar, Box, Container, Drawer, Toolbar, Typography, Link, IconButton, 
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { Link as RouterLink, useLocation } from "react-router-dom";
-import { Menu, Home, AccountCircle, QuestionMarkTwoTone } from "@mui/icons-material";
-
-const drawerWidth = 240;
+import { Menu, Home, AccountCircle, Login } from "@mui/icons-material";
+import { DRAWER_WIDTH } from "../utils/constants";
+import theme from "../theme";
 
 const navItems = [
   {
@@ -15,17 +15,14 @@ const navItems = [
   {
     text: "Login",
     path: "/login",
-    icon: <AccountCircle />,
-  },
-  {
-    text: "Signup",
-    path: "/signup",
-    icon: <AccountCircle />,
+    icon: <Login />,
   },
 ];
 
 const liStyling = {
-  "&.Mui-selected": { borderRadius: "2px", background: "rgba(15, 151, 79, 0.30)" },
+  "&.Mui-selected": { borderRadius: 1, backgroundColor: theme.palette.primary.light, color: theme.palette.text.dark },
+  "&.Mui-selected:hover": { borderRadius: 1, backgroundColor: theme.palette.secondary.light },
+  "&:hover": { borderRadius: 1, backgroundColor: theme.palette.secondary.light, color: theme.palette.text.dark },
 };
 
 const PageLayout = (props) => {
@@ -47,64 +44,35 @@ const PageLayout = (props) => {
         justifyContent: "space-between",
         textAlign: "center",
         pt: 3,
-        px: 1,
-        width: drawerWidth,
+        width: DRAWER_WIDTH,
         height: "100%",
-        backgroundColor: "gray",
       }}>
-      <Link component={RouterLink} to="/" underline="none">
-        <Typography variant="h6" color="textPrimary" sx={{ fontWeight: "bold", textAlign: "center", mt: 2, mb: 2 }}>
-          Reach
-        </Typography>
-      </Link>
-      <Divider />
-      <List>
-        {navItems.map((item) => (
-          <React.Fragment key={item.text}>
-            <ListItem disablePadding>
-              <ListItemButton sx={liStyling} selected={location.pathname === item.path} LinkComponent={item.children ? undefined : RouterLink} to={item.children ? undefined : item.path}>
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.text} />
-              </ListItemButton>
-            </ListItem>
-          </React.Fragment>
-        ))}
-      </List>
-      <Box
-        sx={{
-          mt: "auto",
-          gap: 1,
-          mb: 1,
-          flexDirection: "column",
-          display: "flex",
-        }}>
-        <Typography variant="caption">{currentUser?.email}</Typography>
-        <Typography variant="overline" color="text.secondary">
-          <Link >
-            PRIVACY POLICY
-          </Link>
-        </Typography>
-        <Typography variant="overline" color="text.secondary">
-          <Link >
-            TERMS & CONDITIONS
-          </Link>
-        </Typography>
-        <Box sx={{ color: "text.disabled", display: "flex", alignItems: "center", gap: 1, justifyContent: "center" }}>
-          <IconButton color="inherit">
-            <QuestionMarkTwoTone />
-          </IconButton>
-          <Box>
-            <Typography fontSize={12} textAlign="start">
-              V
-            </Typography>
-            <Typography fontSize={10} textAlign="start">
-              id
-            </Typography>
-          </Box>
-        </Box>
+      <Box sx={{ px: 1 }}>
+        <Link component={RouterLink} to="/" underline="none">
+          <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center", mt: 2, mb: 2 }}>
+            Reach
+          </Typography>
+        </Link>
+        <List>
+          {navItems.map((item) => (
+            <React.Fragment key={item.text}>
+              <ListItem disablePadding>
+                <ListItemButton sx={liStyling} selected={location.pathname === item.path} LinkComponent={item.children ? undefined : RouterLink} to={item.children ? undefined : item.path}>
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.text} />
+                </ListItemButton>
+              </ListItem>
+            </React.Fragment>
+          ))}
+        </List>
+        <Box
+          sx={{
+            mt: "auto",
+          }}></Box>
       </Box>
     </Box>
   );
+
   return (
     <>
       <Box
@@ -119,30 +87,20 @@ const PageLayout = (props) => {
           component="nav"
           position="fixed"
           sx={{
-            backgroundColor: "#212121",
             border: 0,
-            borderBottom: "1px solid rgba(129, 199, 132, 0.5)",
-            width: { md: `calc(100% - ${drawerWidth}px)` },
-            ml: { md: `${drawerWidth}px` },
+            width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
+            ml: { md: `${DRAWER_WIDTH}px` },
           }}
-          variant="outlined"
           elevation={0}>
           <Toolbar>
             <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "space-between" }}>
               <IconButton size="large" color="inherit" aria-label="open drawer" edge="start" onClick={handleDrawerToggle} sx={{ mr: 2, display: { md: "none" } }}>
                 <Menu />
               </IconButton>
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Link component={RouterLink} to="/" color="inherit">
-                  <Typography variant="h6" noWrap sx={{ fontWeight: "bold" }}>
-                    Reach
-                  </Typography>
-                </Link>
-              </Box>
             </Box>
           </Toolbar>
         </AppBar>
-        <Box component="nav" sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}>
+        <Box component="nav" sx={{ width: { md: DRAWER_WIDTH }, flexShrink: { md: 0 } }}>
           <Drawer
             variant="temporary"
             open={mobileOpen}
@@ -152,7 +110,7 @@ const PageLayout = (props) => {
             }}
             sx={{
               display: { xs: "block", md: "none" },
-              "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+              "& .MuiDrawer-paper": { boxSizing: "border-box", width: DRAWER_WIDTH },
             }}>
             {drawer}
           </Drawer>
@@ -167,7 +125,7 @@ const PageLayout = (props) => {
             {drawer}
           </Drawer>
         </Box>
-        <Box component="main" sx={{ flexGrow: 1, width: { md: `calc(100% - ${drawerWidth}px)` } }}>
+        <Box component="main" sx={{ flexGrow: 1, width: { md: `calc(100% - ${DRAWER_WIDTH}px)` } }}>
           <Toolbar />
           <Container disableGutters maxWidth={false}>
             {props.children}
