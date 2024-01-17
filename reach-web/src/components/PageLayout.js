@@ -2,8 +2,9 @@ import { AppBar, Box, Container, Drawer, Toolbar, Typography, Link, IconButton, 
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { Link as RouterLink, useLocation } from "react-router-dom";
-import { Menu, Home, AccountCircle } from "@mui/icons-material";
+import { Menu, Home, AccountCircle, Login } from "@mui/icons-material";
 import { DRAWER_WIDTH } from "../utils/constants";
+import theme from "../theme";
 
 const navItems = [
   {
@@ -14,17 +15,14 @@ const navItems = [
   {
     text: "Login",
     path: "/login",
-    icon: <AccountCircle />,
-  },
-  {
-    text: "Signup",
-    path: "/signup",
-    icon: <AccountCircle />,
+    icon: <Login />,
   },
 ];
 
 const liStyling = {
-  "&.Mui-selected": { borderRadius: "2px", background: "rgba(15, 151, 79, 0.30)" },
+  "&.Mui-selected": { borderRadius: 1, backgroundColor: theme.palette.primary.light, color: theme.palette.text.dark },
+  "&.Mui-selected:hover": { borderRadius: 1, backgroundColor: theme.palette.secondary.light },
+  "&:hover": { borderRadius: 1, backgroundColor: theme.palette.secondary.light, color: theme.palette.text.dark },
 };
 
 const PageLayout = (props) => {
@@ -51,7 +49,7 @@ const PageLayout = (props) => {
       }}>
       <Box sx={{ px: 1 }}>
         <Link component={RouterLink} to="/" underline="none">
-          <Typography variant="h6" color="textPrimary" sx={{ fontWeight: "bold", textAlign: "center", mt: 2, mb: 2 }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center", mt: 2, mb: 2 }}>
             Reach
           </Typography>
         </Link>
@@ -99,13 +97,6 @@ const PageLayout = (props) => {
               <IconButton size="large" color="inherit" aria-label="open drawer" edge="start" onClick={handleDrawerToggle} sx={{ mr: 2, display: { md: "none" } }}>
                 <Menu />
               </IconButton>
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Link component={RouterLink} to="/" color="inherit">
-                  <Typography variant="h6" noWrap sx={{ fontWeight: "bold" }}>
-                    Reach
-                  </Typography>
-                </Link>
-              </Box>
             </Box>
           </Toolbar>
         </AppBar>
