@@ -1,4 +1,11 @@
 import { createTheme } from "@mui/material/styles";
+import WebFont from "webfontloader";
+
+WebFont.load({
+  google: {
+    families: ["Poppins:100,400,500,700,900", "sans-serif"],
+  },
+});
 
 // A custom theme for this app
 const theme = createTheme({
@@ -15,7 +22,7 @@ const theme = createTheme({
     secondary: {
       main: "#007BFF",
       light: "#69B1FF",
-    },  
+    },
     text: {
       light: "#6C757D",
       dark: "#212529",

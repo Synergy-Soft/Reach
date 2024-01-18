@@ -5,6 +5,7 @@ import { Link as RouterLink, useLocation } from "react-router-dom";
 import { Menu, Home, AccountCircle, Login } from "@mui/icons-material";
 import { DRAWER_WIDTH } from "../utils/constants";
 import theme from "../theme";
+import LogoDark from "../assets/logo-dark.svg";
 
 const navItems = [
   {
@@ -20,6 +21,7 @@ const navItems = [
 ];
 
 const liStyling = {
+  mt: 1,
   "&.Mui-selected": { borderRadius: 1, backgroundColor: theme.palette.primary.light, color: theme.palette.text.dark },
   "&.Mui-selected:hover": { borderRadius: 1, backgroundColor: theme.palette.secondary.light },
   "&:hover": { borderRadius: 1, backgroundColor: theme.palette.secondary.light, color: theme.palette.text.dark },
@@ -30,7 +32,6 @@ const PageLayout = (props) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -49,9 +50,16 @@ const PageLayout = (props) => {
       }}>
       <Box sx={{ px: 1 }}>
         <Link component={RouterLink} to="/" underline="none">
-          <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center", mt: 2, mb: 2 }}>
-            Reach
-          </Typography>
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: .5}}>
+            <Box sx={{ width: 40, height: 40 }}>
+              <img src={LogoDark} alt="Logo" sx={{ width: "100%", height: "100%" }} />
+            </Box>
+            <Box>
+              <Typography variant="h4" fontSize={38} fontWeight={700} color={"text.primary"}>
+                Reach
+              </Typography>
+            </Box>
+          </Box>
         </Link>
         <List>
           {navItems.map((item) => (
@@ -65,10 +73,6 @@ const PageLayout = (props) => {
             </React.Fragment>
           ))}
         </List>
-        <Box
-          sx={{
-            mt: "auto",
-          }}></Box>
       </Box>
     </Box>
   );
@@ -83,17 +87,9 @@ const PageLayout = (props) => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}>
-        <AppBar
-          component="nav"
-          position="fixed"
-          sx={{
-            border: 0,
-            width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
-            ml: { md: `${DRAWER_WIDTH}px` },
-          }}
-          elevation={0}>
+        <AppBar component="nav" position="fixed" elevation={0}>
           <Toolbar>
-            <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "space-between" }}>
+            <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "space-between", }}>
               <IconButton size="large" color="inherit" aria-label="open drawer" edge="start" onClick={handleDrawerToggle} sx={{ mr: 2, display: { md: "none" } }}>
                 <Menu />
               </IconButton>
@@ -106,7 +102,7 @@ const PageLayout = (props) => {
             open={mobileOpen}
             onClose={handleDrawerToggle}
             ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
+              keepMounted: true,
             }}
             sx={{
               display: { xs: "block", md: "none" },
@@ -114,20 +110,10 @@ const PageLayout = (props) => {
             }}>
             {drawer}
           </Drawer>
-          <Drawer
-            open
-            elevation={2}
-            variant="permanent"
-            sx={{
-              display: { xs: "none", md: "block" },
-              "& .MuiDrawer-paper": { boxSizing: "border-box" },
-            }}>
-            {drawer}
-          </Drawer>
         </Box>
         <Box component="main" sx={{ flexGrow: 1, width: { md: `calc(100% - ${DRAWER_WIDTH}px)` } }}>
           <Toolbar />
-          <Container disableGutters maxWidth={false}>
+          <Container disableGutters maxWidth={false} theme={theme}>
             {props.children}
           </Container>
         </Box>

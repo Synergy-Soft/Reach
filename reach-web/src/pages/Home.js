@@ -1,47 +1,26 @@
 import React, { useState } from "react";
-import { Grid, Box, Typography, Button } from "@mui/material";
-import {theme} from "../theme";
+import { Grid, Box, Typography, Button, Card, CardHeader, CardContent, CardActionArea } from "@mui/material";
+import CampaignCard from "../components/Cards/CampaignCard";
+import { YouTube } from "@mui/icons-material";
+
 const Home = () => {
   // logic
 
   // jsx
   return (
     <Grid container>
-      <Grid item xs={12}>
-        <Box
-          sx={{
-            backgroundColor: "theme.palette.primary.main",
-          }}>
-          <Typography variant="h4">Your Gateway to Amplified Brand Exposure</Typography>
-          <Button
-            variant="contained"
-            >
-            Learn More
-          </Button>
-        </Box>
-      </Grid>
-      <Grid container>
-        <Box
-          sx={{
-            backgroundColor: "#FFF1EE",
-            marginLeft: "auto",
-            marginRight: "32px",
-            l: "16px",
-            r: "16px",
-            height: "40vh",
-            width: "60vh",
-          }}>
-          <Typography
-            sx={{
-              color: "#FF7F63",
-              fontFamily: "Poppins",
-              fontStyle: "normal",
-              fontWeight: "Bold",
-            }}>
-            Reach
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-around", gap: 5 }}>
+        <Box>
+          <Typography variant="h3">
+            Your Gateway to<br></br> Amplified Brand Exposure
           </Typography>
+          <Button variant="contained">Learn More</Button>
         </Box>
-      </Grid>
+
+        <Box>
+          <CampaignCard icon={<YouTube/>} />
+        </Box>
+      </Box>
     </Grid>
   );
 };
